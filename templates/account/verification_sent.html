@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<header class="min-h-screen w-full bg-black bg-opacity-75 showcase border-gray-600 border-b-8 flex justify-center py-20 bg-no-repeat" style="background-image: url('{% static 'assets/background_netflix.jpg' %}');">
+    <div class="z-10 h-full py-32 md:py-0 text-gray-100 w-full flex items-center flex-col justify-center text-center ">
+        <div class="bg-black bg-opacity-70 py-8 px-4 w-8/12 rounded-md " >
+            <h1 class="text-4xl font-semibold">
+                Confirm Your Email  
+            </h1>
+            <p class="mt-4 text-lg ">
+                A confirmation email has been sent to your inbox. Please verify your email to activate your account.
+            </p>
+            <br><br>
+            <a href="{% url 'account_login' %}" class="py-2 px-4 bg-primary_red text-gray-100 font-medium text-lg rounded-md mt-6 inline-block">
+                Back to Login
+            </a>
+        </div>
+    </div>
+</header>
+{% endblock content %}

@@ -1,0 +1,7 @@
+{% for movie in movies %}
+<a href="{% url 'ott:movie-detail' movie_id=movie.uuid %}">
+    <div class="h-40 m-4 bg-blue-500 flex-shrink-0 rounded-md cursor-pointer w-60">
+        <img src="{{ movie.image.url }}" class="w-full h-full" alt="">
+    </div>
+</a>
+{% endfor %}

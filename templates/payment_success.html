@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #424242;
+      color: #f1f1f1;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: url('path/to/your/background_image.jpg') no-repeat center center/cover;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 50vh;
+    }
+
+    .tex{
+        text-align: left;
+    }
+    .img{
+        width: 40vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #f1f1f1;
+    }
+
+    
+
+    .success-message {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #f1f1f1;
+    }
+
+    .plan-info {
+      font-size: 1.1rem;
+      color: #f9f9f9;
+      margin: 10px 0;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #121212;
+      background-color: #0d9803;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #00d941;
+    }
+
+    .h{
+        color: yellow;
+        
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="tex">
+    <h1>Payment Successful!</h1>
+    <p class="success-message">Thank you for your payment!</p>
+    <p class="plan-info"><strong>Subscription Plan:</strong> {{ plan }}</p>
+    <p class="plan-info"><strong>Start Date:</strong> {{ start_date }}</p>
+    <p class="plan-info h"><strong>End Date:</strong> {{ end_date }}</p>
+    <p class="success-message">We hope you enjoy our services!</p>
+    <a href="{% url 'ott:profile-list' %}" class="button">Go to Profile List</a>
+    </div>
+    <div><img src="{% static 'assets/success.png' %}" alt="" class="img"></div>
+  </div>
+  
+</header>
+</body>
+</html>

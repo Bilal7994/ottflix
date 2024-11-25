@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="bg-primary_black min-h-screen w-full">
+    <!-- Movie Banner Section -->
+    <section 
+        class="h-screen relative bg-no-repeat pb-8 pl-6 flex justify-end items-end bg-cover" 
+        style="background-image: url('{{ movie.image.url }}');">
+        <div>
+            <h2 class="text-6xl font-semibold text-white my-4">
+                {{ movie.title }}
+            </h2>
+            <p class=" w-11/12 md:w-5/12 font-medium text-white my-4">
+                {{ movie.description }}
+            </p>
+            <div class="flex my-4">
+                <a href="{% url 'ott:play-movie' movie_id=movie.uuid %}" 
+                   class="ml-4 text-white flex items-center bg-gray-500 bg-opacity-80 py-2 px-5 rounded-md">
+                   <ion-icon name="play" class="text-2xl text-black"></ion-icon>
+                   <span class="ml-3 font-medium text-black">
+                       Play
+                   </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Seasons and Episodes Section -->
+    {% if movie.type == 'seasonal' %}
+    <section class="bg-primary_black min-h-screen flex justify-center py-10">
+        <div class="p-8 w-10/12 relative">
+            <h2 class="text-gray-200 text-3xl font-medium">
+                Seasons and Episodes
+            </h2>
+            <div class="flex flex-wrap justify-center">
+                {% for season in movie.seasons.all %}
+                <div class="season-card bg-gray-800 text-white rounded-lg p-6 m-4 w-80">
+                    <h3 class="text-xl font-semibold">
+                        Season {{ season.season_number }}: {{ season.title }}
+                    </h3>
+                    <div class="episodes mt-4">
+                        <h4 class="font-medium">Episodes:</h4>
+                        <ul class="list-disc pl-4">
+                            {% for video in season.videos.all %}
+                            <li>
+                                <a href="{% url 'ott:play-movie' movie_id=movie.uuid %}?video_id={{ video.id }}" 
+                                   class="text-blue-400 hover:underline">
+                                    Episode {{ video.episode_number }}: {{ video.title }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-gray-400">No seasons or episodes available for this movie.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</main>
+{% endblock content %}
